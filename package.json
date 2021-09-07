@@ -12,5 +12,9 @@
   "license": "ISC",
   "dependencies": {
     "read-excel-file": "^5.2.9"
+  },
+  "devDependencies": {
+    "electron": "^14.0.0",
+    "electron-packager": "^15.3.0"
   }
 }
