@@ -5,7 +5,7 @@ let dialogs = {}
 let saveData = require('./saveData.json');
 // Readable Stream.
 document.getElementById('loaded').style.display = "none";
-readXlsxFile(fs.createReadStream('./hajimari.xlsx'), {getSheets: true}).then((sheets) => {
+readXlsxFile(fs.createReadStream('./resources/app/hajimari.xlsx'), {getSheets: true}).then((sheets) => {
     chapters = sheets;
 }).then(function () {
     chapters.forEach(function (value) {
@@ -14,7 +14,7 @@ readXlsxFile(fs.createReadStream('./hajimari.xlsx'), {getSheets: true}).then((sh
         el.textContent = key;
         el.value = key;
         document.getElementById('chapters').appendChild(el);
-        readXlsxFile(fs.createReadStream('./hajimari.xlsx'), {sheet: key}).then((data) => {
+        readXlsxFile(fs.createReadStream('./resources/app/hajimari.xlsx'), {sheet: key}).then((data) => {
             dialogs[key] = data;
         }).then(function () {
             refreshLine(saveData.line)
@@ -60,7 +60,7 @@ document.onkeyup = function (event) {
 function goToLine(chapterName, line) {
     let saveData = {chapter: chapterName, line: line}
     let data = JSON.stringify(saveData);
-    fs.writeFileSync('./saveData.json', data);
+    fs.writeFileSync('./resources/app/saveData.json', data);
 
 
     let chapter = dialogs[chapterName]
